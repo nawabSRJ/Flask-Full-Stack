@@ -1,0 +1,23 @@
+-- USERS
+
+CREATE TABLE users(
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(50) NOT NULL,
+    email VARCHAR(100) UNIQUE NOT NULL,
+    password VARCHAR(250) NOT NULL,
+    phone VARCHAR(10) UNIQUE NOT NULL,
+    age INT NOT NULL,
+    gender VARCHAR(20) NOT NULL,
+    course VARCHAR(50) NOT NULL,
+    photo VARCHAR(255) DEFAULT NULL,   
+    is_verified TINYINT(1) DEFAULT 0,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+)
+
+-- ADMIN
+
+CREATE TABLE admin (
+    id       INT AUTO_INCREMENT PRIMARY KEY,
+    email    VARCHAR(100) UNIQUE NOT NULL,
+    password VARCHAR(250) NOT NULL               -- hashed
+);

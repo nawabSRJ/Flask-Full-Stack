@@ -1,0 +1,13 @@
+Setup
+    - Firstly i created a python virtual env named 'myenv'
+    - installed all the packages required and did : pip freeze > requirements.txt
+    - arranged all the files and folders : app dir, blueprints, templates and __init__.py file and db.py file etc....
+    - added basic .env file content : secret keys, upload folder url
+
+Coding
+    - created schema.sql file in the sql folders
+    - wrote db connection code in db.py inside or app dir.
+    - blueprints created in user and admin folder routes.py files respectively
+    - wrote __init__.py file in app dir : app instantiation, blueprints imported and registered, returned app
+    
+    
