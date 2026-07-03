@@ -64,7 +64,7 @@ def user_signup():
         if not allowed_file(file.filename):
              return render_template('user/signup.html', error='Only image files are allowed (png, jpg, jpeg, gif)')
         
-        flash(f'Flash : Thanks, your file {file.filename} has been uploaded!')
+        flash(f'Flash : Photo {file.filename} has been uploaded!')
 
         filename = secure_filename(file.filename)
         unique_filename = f"{uuid.uuid4().hex}_{filename}"
