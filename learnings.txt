@@ -1,0 +1,5 @@
+# Python equivalent
+len(users)  # → 2
+
+# Jinja2 equivalent
+{{ users|length }}  # → 2

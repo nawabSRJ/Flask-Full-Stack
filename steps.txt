@@ -9,5 +9,23 @@ Coding
     - wrote db connection code in db.py inside or app dir.
     - blueprints created in user and admin folder routes.py files respectively
     - wrote __init__.py file in app dir : app instantiation, blueprints imported and registered, returned app
+
+
+    User
+        - created signup.html and login.html templates inside templates/user/ folder
+        - wrote GET route for signup page and POST route for signup form handling — kept them as separate functions
+        - form data grabbed into a dict and passed to validate_user() helper for cleaner validation
+        - file upload handled in signup — allowed extensions checked, uuid prefix added to filename before saving to static/uploads/
+        - password hashed using werkzeug's generate_password_hash before inserting into DB
+        - duplicate email/phone check done before INSERT using SELECT query
+        - wrote GET route for login page and POST route for login form handling
+        - credentials verified — email looked up in DB, password checked using check_password_hash
+        - on successful login : session['user'] dict created with user info and redirected to dashboard
     
-    
+    Admin
+        - created admin table separately — no signup flow, admin seeded directly via SQL INSERT
+        - password hashed using a one time Python script before inserting into DB : admin_Passwd.py
+        - wrote GET and POST routes for admin login 
+        - in admin GET route made a db lookup sql request to fetchone() record if not found displays error message
+        - on successful admin login : session['admin'] dict created — separate key from user session
+        - admin dashboard fetches all users from DB and shows them on dashboard in cards with the total number of users as well (learned new jinja syntax : users|length)

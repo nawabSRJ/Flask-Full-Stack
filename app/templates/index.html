@@ -1,0 +1,282 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Flask Full Stack</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <style>
+        /* only what bootstrap can't do */
+        .hero-img-placeholder, .split-img-placeholder {
+            height: 320px;
+            border-radius: 16px;
+        }
+        .feature-card .icon {
+            width: 44px;
+            height: 44px;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+
+<body class="bg-white text-dark">
+
+    <!-- ===================== NAVBAR ===================== -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-white border-bottom sticky-top">
+        <div class="container">
+
+            <!-- brand -->
+            <a class="navbar-brand fw-bold fs-5" href="#">Flask <span class="text-primary">FullStack</span></a>
+
+            <!-- toggler -->
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <!-- links -->
+            <div class="collapse navbar-collapse" id="mainNav">
+                <ul class="navbar-nav ms-auto gap-2 align-items-center">
+                    <li class="nav-item">
+                        <a class="nav-link text-dark fw-semibold" href="#">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" href="#">Features</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" href="#">About</a>
+                    </li>
+                    <li class="nav-item ms-2">
+                        <a href="{{ url_for('user.login_page') }}"
+                            class="btn btn-outline-primary rounded-pill px-4 fw-semibold">
+                            Login
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ url_for('user.signup_page') }}"
+                            class="btn btn-primary rounded-pill px-4 fw-semibold">
+                            Sign Up
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+        </div>
+    </nav>
+    <!-- ===================== END NAVBAR ===================== -->
+
+
+    <!-- ===================== HERO ===================== -->
+    <section class="py-5 mt-3">
+        <div class="container">
+            <div class="row align-items-center g-5">
+
+                <!-- left -->
+                <div class="col-lg-6">
+                    <span class="badge bg-primary bg-opacity-10 text-primary fw-semibold px-3 py-2 rounded-pill mb-3 d-inline-block">
+                        Full Stack Flask App
+                    </span>
+                    <h1 class="display-5 fw-black mb-3">
+                        Build, Learn and <br>
+                        <span class="text-primary">Ship with Flask</span>
+                    </h1>
+                    <p class="text-muted fs-6 mb-4" style="max-width: 460px;">
+                        A complete full stack web application built with Flask, MySQL, Bootstrap and Python.
+                        Signup, login, manage your profile and explore what Flask can do.
+                    </p>
+                    <div class="d-flex gap-3 flex-wrap">
+                        <a href="{{ url_for('user.signup_page') }}"
+                            class="btn btn-primary rounded-pill px-4 py-2 fw-semibold">
+                            Get Started
+                        </a>
+                        <a href="{{url_for('admin.admin_login_page')}}"
+                            class="btn btn-outline-secondary rounded-pill px-4 py-2 fw-semibold">
+                            Login as Admin
+                        </a>
+                    </div>
+                </div>
+
+                <!-- right — image placeholder -->
+                <div class="col-lg-6">
+                    <div class="hero-img-placeholder bg-primary bg-opacity-10 d-flex align-items-center justify-content-center text-primary fw-semibold fs-5">
+                        [ Hero Image / Illustration ]
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ===================== FEATURE CARDS ===================== -->
+    <section id="features" class="py-5 bg-light">
+        <div class="container">
+
+            <div class="text-center mb-5">
+                <h2 class="fw-bold">Why use this app?</h2>
+                <p class="text-muted" style="font-size: 15px;">Everything you need in one place</p>
+            </div>
+
+            <div class="row g-4">
+                <!-- there is a 12 column grid system -->
+                <!-- card 1 -->
+                <div class="col-md-6">
+                    <div class="bg-white rounded-3 p-4 h-100 shadow-sm">
+                        <div class="icon bg-primary bg-opacity-10 d-flex align-items-center justify-content-center mb-3">
+                            SAFETY
+                        </div>
+                        <h5 class="fw-bold mb-2">Secure Auth</h5>
+                        <p class="text-muted mb-0" style="font-size: 14px;">
+                            Signup and login with hashed passwords, session management and email verification.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- card 2 -->
+                <div class="col-md-6">
+                    <div class="bg-white rounded-3 p-4 h-100 shadow-sm">
+                        <div class="icon bg-primary bg-opacity-10 d-flex align-items-center justify-content-center mb-3">
+                            PROFILE
+                        </div>
+                        <h5 class="fw-bold mb-2">User Profiles</h5>
+                        <p class="text-muted mb-0" style="font-size: 14px;">
+                            Upload a photo, update your details and manage your account from your dashboard.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- card 3 -->
+                <div class="col-md-6">
+                    <div class="bg-white rounded-3 p-4 h-100 shadow-sm">
+                        <div class="icon bg-primary bg-opacity-10 d-flex align-items-center justify-content-center mb-3">
+                            ADMIN
+                        </div>
+                        <h5 class="fw-bold mb-2">Admin Panel</h5>
+                        <p class="text-muted mb-0" style="font-size: 14px;">
+                            Admins can view all users, track activity logs and manage the platform.
+                        </p>
+                    </div>
+                </div>
+
+                
+
+                <!-- card 5 -->
+                <div class="col-md-6">
+                    <div class="bg-white rounded-3 p-4 h-100 shadow-sm">
+                        <div class="icon bg-primary bg-opacity-10 d-flex align-items-center justify-content-center mb-3">
+                            XAMPP Control Panel used for MySQL
+                        </div>
+                        <h5 class="fw-bold mb-2">MySQL Database</h5>
+                        <p class="text-muted mb-0" style="font-size: 14px;">
+                            All data stored in MySQL via pymysql. No ORM, raw SQL so you learn the real thing.
+                        </p>
+                    </div>
+                </div>
+
+
+
+            </div>
+        </div>
+    </section>
+
+
+
+    <!-- ===================== SPLIT SECTION ===================== -->
+    <section class="py-5">
+        <div class="container">
+            <div class="row align-items-center g-5">
+
+                <!-- left — image placeholder -->
+                <div class="col-lg-6">
+                    <div class="split-img-placeholder bg-primary bg-opacity-10 d-flex align-items-center justify-content-center text-primary fw-semibold fs-5">
+                        [ Screenshot / Illustration ]
+                    </div>
+                </div>
+
+                <!-- right -->
+                <div class="col-lg-6">
+                    <span class="badge bg-primary bg-opacity-10 text-primary fw-semibold px-3 py-2 rounded-pill mb-3 d-inline-block">
+                        For Learners
+                    </span>
+                    <h2 class="fw-bold mb-3">
+                        Learn Flask the <span class="text-primary">Right Way</span>
+                    </h2>
+                    <p class="text-muted mb-4" style="font-size: 15px;">
+                        This project is built step by step covering blueprints, sessions, file uploads,
+                        flash messaging, MySQL integration and email verification — all without shortcuts.
+                    </p>
+                    <ul class="list-group list-group-flush d-flex flex-column gap-2">
+                        <li class="d-flex align-items-center gap-2 list-group-item">
+                            <span class="text-dark" style="font-size: 14px;">Blueprints and modular structure</span>
+                        </li>
+                        <li class="d-flex align-items-center gap-2 list-group-item">
+                            <span class="text-dark" style="font-size: 14px;">Session based authentication</span>
+                        </li>
+                        <li class="d-flex align-items-center gap-2 list-group-item">
+                            <span class="text-dark" style="font-size: 14px;">Raw SQL with pymysql — no ORM</span>
+                        </li>
+                        <li class="d-flex align-items-center gap-2 list-group-item">
+                            <span class="text-dark" style="font-size: 14px;">Email verification with itsdangerous</span>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ===================== FOOTER ===================== -->
+    <footer class="bg-dark text-secondary py-5">
+        <div class="container">
+            <div class="row g-4">
+
+                <!-- brand col -->
+                <div class="col-md-4">
+                    <p class="fw-bold text-white fs-5 mb-2">Flask <span class="text-primary">FullStack</span></p>
+                    <p style="font-size: 13px; color:white">
+                        A learning project built with Flask, MySQL and Bootstrap. Made to understand full stack web development from scratch.
+                    </p>
+                </div>
+
+                <!-- links col -->
+                <div class="col-md-4">
+                    <p class="fw-semibold text-white mb-2">Quick Links</p>
+                    <ul class="list-unstyled d-flex flex-column gap-1" style="font-size: 13px; ">
+                        <li><a href="#" class="text-info text-decoration-none">Home</a></li>
+                        <li><a href="#features" class="text-info text-decoration-none">Features</a></li>
+                        <li><a href="{{ url_for('user.signup_page') }}" class="text-info text-decoration-none">Sign Up</a></li>
+                        <li><a href="{{ url_for('user.login_page') }}" class="text-info text-decoration-none">Login</a></li>
+                    </ul>
+                </div>
+
+                <!-- tech col -->
+                <div class="col-md-4">
+                    <p class="fw-semibold text-white mb-2">Built With</p>
+                    <div class="d-flex flex-wrap gap-2" style="font-size: 12px;">
+                        <span class="badge bg-secondary">Flask</span>
+                        <span class="badge bg-secondary">Python</span>
+                        <span class="badge bg-secondary">MySQL</span>
+                        <span class="badge bg-secondary">Bootstrap 5</span>
+                        <span class="badge bg-secondary">pymysql</span>
+
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- bottom bar -->
+            <div class="border-top border-secondary mt-4 pt-3 text-center text-white" style="font-size: 12px;">
+                Flask FullStack - Built for learning purposes.
+            </div>
+
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>
