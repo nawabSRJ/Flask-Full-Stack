@@ -29,3 +29,5 @@ Coding
         - in admin GET route made a db lookup sql request to fetchone() record if not found displays error message
         - on successful admin login : session['admin'] dict created — separate key from user session
         - admin dashboard fetches all users from DB and shows them on dashboard in cards with the total number of users as well (learned new jinja syntax : users|length)
+        - added the functionality to delete user on admin panel via simple post request to backend followed by a DELETE query based on id
+        
