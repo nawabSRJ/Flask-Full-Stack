@@ -60,3 +60,21 @@ def admin_dashboard():
 def admin_logout():
     session.clear()
     return redirect(url_for('admin.admin_login_page'))
+
+
+@admin_bp.post('/delete_user/<int:user_id>')
+def delete_user(user_id):
+    if 'admin' not in session:
+        return render_template('admin/not_authorized.html')
+    
+    conn = get_db_connection()
+    try:
+        with conn.cursor() as cur:
+            cur.execute("DELETE FROM users WHERE id = %s", (user_id,))
+            conn.commit()
+    except Exception as e:
+        return render_template('admin/dashboard.html', error=f'Exception Occured : {e}')
+    finally:
+        conn.close()
+    
+    return redirect(url_for('admin.admin_dashboard'))
