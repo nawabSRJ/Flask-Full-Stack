@@ -7,29 +7,74 @@
     <title>User SignUp</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <style>
+        body {
+            background-color: #f8f9fa;
+            min-height: 100vh;
+            padding: 32px 0;
+        }
+        .form-control:focus,
+        .form-select:focus {
+            border-color: #198754;
+            box-shadow: 0 0 0 3px rgba(25, 135, 84, 0.12);
+        }
+        .form-label {
+            font-weight: 500;
+            font-size: 14px;
+            color: #374151;
+            margin-bottom: 5px;
+        }
+        .card-wrapper {
+            box-shadow: 0 2px 16px rgba(0,0,0,0.07);
+            border-radius: 14px;
+        }
+        .section-divider {
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.6px;
+            color: #9ca3af;
+            border-bottom: 1px solid #e5e7eb;
+            padding-bottom: 6px;
+            margin-bottom: 16px;
+            margin-top: 4px;
+        }
+    </style>
 </head>
 
 <body>
-    <h1 class="h1 text-center text-dark my-3 "> Signup</h1>
-    <blockquote class="blockquote text-center">Create your account to get started</blockquote>
 
-    <div class="container m-auto bg-light rounded-2 p-4" style="max-width: 800px;">
+    <div class="text-center mb-3">
+        <h1 class="h3 fw-bold text-dark mb-1">Create Account</h1>
+        <p class="text-muted" style="font-size: 14px;">Fill in your details to get started</p>
+    </div>
+
+    <div class="container m-auto bg-white card-wrapper p-4 p-md-5" style="max-width: 800px;">
+
         {% if error %}
-        <div class="alert alert-danger">{{ error }}</div>
+        <div class="alert alert-danger py-2" style="font-size: 14px;">{{ error }}</div>
         {% endif %}
+
         <form action="{{url_for('user.user_signup')}}" method="POST" enctype="multipart/form-data">
+
+            <!-- Section: Basic Info -->
+            <div class="section-divider">Basic Information</div>
+
             <!-- name and email -->
             <div class="entry d-flex d-row gap-4 mb-3">
                 <div class="d-flex flex-column gap-0 w-50">
                     <label class="form-label" for="name">Full Name:</label>
-                    <input class="form-control" type="text" name="name" id="name" placeholder="Your full name" required>
+                    <input class="form-control" type="text" name="name" id="name"
+                        placeholder="Your full name" required>
                 </div>
 
                 <div class="d-flex flex-column gap-0 w-50">
                     <label class="form-label" for="email">Email:</label>
-                    <input class="form-control" type="email" name="email" id="email" placeholder="Your email" required>
+                    <input class="form-control" type="email" name="email" id="email"
+                        placeholder="Your email" required>
                 </div>
             </div>
+
             <!-- password and confirm password -->
             <div class="entry d-flex d-row gap-4 mb-3">
                 <div class="d-flex flex-column gap-0 w-50">
@@ -45,19 +90,22 @@
                 </div>
             </div>
 
+            <!-- Section: Personal Details -->
+            <div class="section-divider mt-3">Personal Details</div>
+
             <!-- phone and age -->
             <div class="entry d-flex d-row gap-4 mb-3">
                 <div class="d-flex flex-column gap-0 w-50">
                     <label class="form-label" for="phone">Phone:</label>
-                    <input class="form-control" type="number" name="phone" id="phone" placeholder="Your phone number"
-                        required maxlength="10" pattern="">
+                    <input class="form-control" type="number" name="phone" id="phone"
+                        placeholder="Your phone number" required maxlength="10" pattern="">
                 </div>
                 <div class="d-flex flex-column gap-0 w-50">
                     <label class="form-label" for="age">Age:</label>
-                    <input class="form-control" type="number" name="age" id="age" placeholder="Your age" required>
+                    <input class="form-control" type="number" name="age" id="age"
+                        placeholder="Your age" required>
                 </div>
             </div>
-
 
             <!-- Gender and Course -->
             <div class="entry d-flex d-row gap-4 mb-3">
@@ -67,13 +115,14 @@
 
                     <div class="d-flex gap-4 mt-1">
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" name="gender" id="male" value="male" required>
+                            <input class="form-check-input" type="radio" name="gender"
+                                id="male" value="male" required>
                             <label class="form-check-label" for="male">Male</label>
                         </div>
 
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" name="gender" id="female" value="female"
-                                required>
+                            <input class="form-check-input" type="radio" name="gender"
+                                id="female" value="female" required>
                             <label class="form-check-label" for="female">Female</label>
                         </div>
                     </div>
@@ -93,23 +142,36 @@
                 </div>
             </div>
 
+            <!-- Section: Photo -->
+            <div class="section-divider mt-3">Profile Photo</div>
+
             <!-- photo -->
             <div class="entry gap-1 d-flex flex-column mb-3">
                 <label class="form-label" for="user_photo">Upload Photo</label>
                 <input class="form-control" type="file" name="user_photo" id="photo">
+                <p class="text-muted mb-0 mt-1" style="font-size: 12px;">
+                    Optional. JPG or PNG recommended.
+                </p>
             </div>
 
             <div class="submit-btn w-100 d-flex justify-content-center mt-4">
-                <button type="submit" class="btn btn-success m-auto px-4 rounded-pill fs-5">SignUp</button>
+                <button type="submit"
+                        class="btn btn-success m-auto px-5 rounded-pill fs-6 fw-semibold"
+                        style="padding-top: 10px; padding-bottom: 10px;">
+                    Sign Up
+                </button>
             </div>
 
-            <p class="text-center text-muted mt-4">
+            <p class="text-center text-muted mt-4 mb-0" style="font-size: 14px;">
                 Already have an account?
-                <a href="{{ url_for('user.login_page') }}">Login here</a>
+                <a href="{{ url_for('user.login_page') }}" class="text-success fw-semibold text-decoration-none">
+                    Login here
+                </a>
             </p>
 
         </form>
     </div>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
         crossorigin="anonymous"></script>

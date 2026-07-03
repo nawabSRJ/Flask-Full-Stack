@@ -14,19 +14,19 @@ def allowed_file(filename):
 
 
 def validate_user(data):
-    if data.age < 3 or data.age > 100:
+    if int(data['age']) < 3 or int(data['age']) > 100:
         return 'Age must be between 3 and 100'
     
-    if data.password != data.c_passwd:
+    if data['password'] != data['c_passwd']:
         return 'Passwords do not match'
 
-    if len(data.password) < 8:
+    if len(data['password']) < 8:
         return 'Password must be at least 8 characters long'
 
-    if len(data.phone) != 10 or not data.phone.isdigit():
+    if len(data['phone']) != 10 or not data['phone'].isdigit():
         return 'Phone number must be 10 digits long'
     
-    return False  # No errors
+    return False    # No errors
 
 # --------------------------------- ROUTES
 @user_bp.get('/login')
@@ -62,7 +62,7 @@ def user_signup():
     file = request.files.get('user_photo')
     if file and file.filename != '':
         if not allowed_file(file.filename):
-             return render_template('signup.html', error='Only image files are allowed (png, jpg, jpeg, gif)')
+             return render_template('user/signup.html', error='Only image files are allowed (png, jpg, jpeg, gif)')
         
         flash(f'Flash : Thanks, your file {file.filename} has been uploaded!')
 
@@ -88,7 +88,7 @@ def user_signup():
             hashed_password = generate_password_hash(data['password'])
             cur.execute(
                 """INSERT INTO users(name, email, password, phone, age, gender, course, photo) VALUES (%s, %s, %s, %s, %s, %s, %s, %s)""",
-                (data['name'], data['email'], hashed_password, data['phone'], data['age'], data['gender'], data['course'], photo_filename)
+                (data['name'], data['email'], hashed_password, data['phone'], int(data['age']), data['gender'], data['course'], photo_filename)
             )
     except Exception as e:
         return render_template('user/signup.html', error=f'Exception occurred : {e}')
@@ -138,6 +138,8 @@ def user_login():
 
 @user_bp.get('/dashboard')
 def dashboard():
+    if 'user' not in session:
+        return render_template('user/not_authorized.html')
     return render_template('user/dashboard.html', user=session.get('user'))
 
 @user_bp.post('/logout')
